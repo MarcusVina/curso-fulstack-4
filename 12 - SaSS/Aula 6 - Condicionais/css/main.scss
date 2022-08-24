@@ -1,0 +1,81 @@
+
+@import 'variables';
+@import 'base';
+@import 'mixins';
+@import 'extends';
+
+
+
+.container{
+
+    display: flex;
+    justify-content: space-around;
+
+    .box{
+        width: 30%;
+        color: black;
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+
+        /* pode ser feito assim
+        margin: 10px 20px 30px 20px; */
+
+        margin: {
+        top: 10px;
+        left: 20px;
+        right: 30px;
+        bottom: 22px;
+
+        }
+
+        &.active{
+            background: $color-secondary;
+        }
+
+
+        h2{
+            font-family: $font-primary;
+        }
+
+        p{
+            font-family: $font-secondary;
+            font-size: 18px;
+
+            &.hidden{
+                display: none;
+            }
+        }
+
+        ul{
+            @include reset-list();
+        }
+
+        a {
+            color: green;
+
+            &:hover{
+                color: yellow;
+
+                & + p.hidden{
+                    display: block;
+                }
+            }
+        }
+
+        .success {
+           @extend %box-alert;
+            @include bg-effect(success);
+        }
+
+        .warning{
+            @extend %box-alert;
+            @include bg-effect(warning);
+         }
+
+         .danger {
+            @extend %box-alert;
+            @include bg-effect(danger);
+         }
+    }
+}
